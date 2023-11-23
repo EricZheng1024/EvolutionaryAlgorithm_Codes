@@ -53,7 +53,7 @@ classdef MOEAD_Gen< ALGORITHM
                 kk = abs(Population(P).objs-(repmat(Z,T,1)-delta));
                 k = abs(Offspring.obj - (Z - delta));
                 g_old = max((kk + rho.*repmat(sum(kk,2),1,Problem.M)).*W(P,:),[],2);
-                g_new = max((k + rho.*repmat(k,T,1)).*W(P,:),[],2);
+                g_new = max((k + rho.*repmat(sum(k,2),T,Problem.M)).*W(P,:),[],2);
                 Population(P(g_old>=g_new)) = Offspring;
 
             end
